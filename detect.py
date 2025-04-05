@@ -4,12 +4,26 @@ from datetime import datetime
 
 # Known file signatures (magic numbers)
 SIGNATURES = {
-    '.jpg': 'ffd8',      # JPEG
-    '.png': '89504e47',  # PNG
-    '.exe': '4d5a',      # EXE
-    '.pdf': '25504446',  # PDF
-    '.txt': 'efbbbf',    # UTF-8 text (optional)
-    '.mp4': '66747970'
+    '.jpg': 'ffd8',              # JPEG (start marker)
+    '.png': '89504e47',          # PNG (signature)
+    '.exe': '4d5a',              # EXE (MZ header)
+    '.pdf': '25504446',          # PDF (%PDF header)
+    '.txt': 'efbbbf',            # UTF-8 text (BOM, optional)
+    '.mp4': '66747970',          # MP4 (ftyp marker)
+    '.gif': '47494638',          # GIF (GIF8 header)
+    '.zip': '504b0304',          # ZIP (local file header)
+    '.rar': '52617221',          # RAR (Rar! signature)
+    '.docx': '504b0304',         # DOCX (ZIP-based, same as .zip)
+    '.xlsx': '504b0304',         # XLSX (ZIP-based, same as .zip)
+    '.wav': '52494646',          # WAV (RIFF header)
+    '.avi': '52494646',          # AVI (RIFF header, with 'AVI ' after)
+    '.mov': '6d6f6f76',          # MOV (moov atom, QuickTime)
+    '.doc': 'd0cf11e0',          # DOC (OLE compound file)
+    '.pptx': '504b0304',         # PPTX (ZIP-based, same as .zip)
+    '.bmp': '424d',              # BMP (BM header)
+    '.iso': '4344303031',        # ISO (CD001 signature)
+    '.flv': '464c56',            # FLV (FLV header)
+    '.swf': '465753'             # SWF (FWS or CWS header)
 }
 
 def check_signature(file_path):
